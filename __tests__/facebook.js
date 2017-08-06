@@ -24,18 +24,23 @@ describe('Facebook module : GET', () => {
     })
   })
 
-  it('GET Video List', (done) => {
+  it('GET Video Detail', (done) => {
     const videoId = _videoId
 
     getVideoDetail(videoId).then(detail => {
+      console.log('detail: ', detail)
+      expect(typeof detail.id).toBe('string')
       expect(typeof detail.source).toBe('string')
+      expect(typeof detail.title).toBe('string')
+      expect(typeof detail.description).toBe('string')
+      expect(typeof detail.likes).toBe('object')
+      expect(typeof detail.length).toBe('number')
       done()
     })
   })
 })
 
-
-describe('Facebook module : POST', () => {
+describe.skip('Facebook module : POST', () => {
   const mp4Link = 'https://banana-video.s3-ap-southeast-1.amazonaws.com/20455041_514255432249121_1311735655612547072_n.mp4'
   const pageId = '1055050871292193'
 

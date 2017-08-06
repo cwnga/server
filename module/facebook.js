@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-
 const clientId = process.env.GRAPHAPI_CLIENT_ID
 const secret = process.env.GRAPHAPI_SECRET
 
@@ -77,7 +76,7 @@ export function getVideoList (pageId) {
 
 export function getVideoDetail (videoId) {
   const accessToken = process.env.GRAPHAPI_ACCESS_TOKEN
-  const url = `https://graph.facebook.com/v2.9/${videoId}?fields=source&access_token=${accessToken}`
+  const url = `https://graph.facebook.com/v2.9/${videoId}?fields=source,title,picture,description,likes,length&access_token=${accessToken}`
 
   return fetch(url).then(
       res => res.json()
