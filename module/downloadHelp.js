@@ -1,9 +1,8 @@
-var https = require('https')
-var http = require('http')
-var downloadableAPI = require('url-valid')
-var fs = require('fs')
-
-var fileNameUtil = require('./utils/fileName')
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
+const downloadableAPI = require('url-valid')
+const fileNameUtil = require('./utils/fileName')
 
 function downloadAPI (url0) {
   var downloadlink = url0

@@ -41,27 +41,30 @@ describe('Facebook module : GET', () => {
 })
 
 describe.skip('Facebook module : POST', () => {
-  const mp4Link = 'https://banana-video.s3-ap-southeast-1.amazonaws.com/20455041_514255432249121_1311735655612547072_n.mp4'
+  const file_url = 'https://banana-video.s3-ap-southeast-1.amazonaws.com/20455041_514255432249121_1311735655612547072_n.mp4'
   const pageId = '1055050871292193'
+  const description  = '  '
+  const embeddable = true
+  const title  = 'I am title peter'
+  const social_actions = true
+  const content_category = 'COMEDY'
 
-  
-    const description  = '  '
-    const embed = true
-    const mp4Url = mp4Link
-    const title  = 'I am title peter'
-    const social_actions = true
-    const content_category = 'COMEDY'
-
+  const options = {
+    title,
+    description,
+    embeddable,
+    file_url,
+    social_actions,
+    content_category
+  };
 
   it('videoPost', (done) => {
-    videoPost(pageId, description, embed, mp4Url, title).then((res) => {
-      
-      console.log(res)
-
+    videoPost(pageId, options).then((res) => {
+      console.info('Success =', res)
       done()
-    },
-    (err)=> console.log(err))
-
+    }, (err) => {
+      console.error('Post video error =', err)
+      done(err);
+    })
   })
-
 })

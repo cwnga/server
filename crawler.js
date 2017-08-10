@@ -1,24 +1,21 @@
-
-import {getAccessToken, getVideoDetailList} from './module/facebook'
-import {uploadLocalFile} from './module/s3'
-import {initDB, videoCreate} from './module/dataBase'
+import { uploadLocalFile } from './module/s3'
+import { initDB, videoCreate } from './module/dataBase'
+import { getAccessToken, getVideoDetailList } from './module/facebook'
+const fileHelp = require('./module/fileHelp')
 const downloadHelp = require('./module/downloadHelp')
 const fileNameHelp = require('./module/utils/fileName')
-const fileHelp = require('./module/fileHelp')
 
 (async function () {
   initDB()
   await getAccessToken()
 
   const pageId = process.env.npm_config_pageId || 'LADbible'
-
   const videoList = await getVideoDetailList(pageId)
-
   const path = './download'
 
   for (let i = 0; i < videoList.length; i++) {
     const videoObject = videoList[i]
-    const {id, title, picture, description, source, likes, length} = videoObject
+    const { id, title, picture, description, source, likes, length } = videoObject
     const fileName = fileNameHelp.urlFileName(source)
     let s3Source = ''
 
