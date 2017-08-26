@@ -1,4 +1,4 @@
-import {getAccessToken, getVideoList, getVideoDetail, getPageDetail, videoPost, getTokenUser} from '../module/facebook'
+import {getAccessToken, getVideoList, getVideoDetail, getPageDetail,videoPost, getTokenUser, extendToken} from '../module/facebook'
 
 describe('Facebook module', () => {
   let _videoId = ''
@@ -88,5 +88,19 @@ describe('Facebook module', () => {
                  })
   })
 
+    it('extend token', (done) => {
+        extendToken(
+        "", //NOTE: token can not expose
+        "", //NOTE: clientId can not expose
+        ""  //NOTE: clientSecret can not expose
+        )
+        .then(result => {
+
+            console.log(result)
+            expect(typeof result.access_token).toBe('string')
+            expect(typeof result.expires_in).toBe('number')
+            done()
+        })
+    })
 
 })

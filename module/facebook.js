@@ -95,6 +95,16 @@ export function getAccessToken (x) {
   })
 }
 
+export function extendToken (token, clientId, clientSecret) {
+  const url = `https://graph.facebook.com/v2.10/oauth/access_token?grant_type=fb_exchange_token&client_id=${clientId}&client_secret=${clientSecret}&fb_exchange_token=${token}`
+  return fetch(url)
+          .then(res => {
+            return res.json()
+          },
+           err => console.error(err)
+         )
+}
+
 /**
  * getVideoList
  * @param {String} pageId
